@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#3F51B5">
+    <tr>
+        <td height="50" style="color: white;" align="center"><p>Powiadomienie ze strony www.pierogarniajezowe.pl</p>
+        </td>
+    </tr>
+    <tr bgcolor="ffffff">
+        <td height="50" align="center"><h2 th:text="${topicMsg}">topicMsg</h2></td>
+    </tr>
+    <tr bgcolor="ffffff">
+        <td height="50" style="padding-left:50px;" align="left"><h4 th:text="${'Wiadomość od: ' + from}">from</h4></td>
+    </tr>
+    <tr bgcolor="ffffff">
+        <td height="50" style="padding-left:50px;" align="left"><h4 th:text="${'Treść: ' + message}">message</h4></td>
+    </tr>
+    <tr bgcolor="ffffff">
+        <td height="50" style="padding-left:50px;" align="left"><h4 th:text="${'Nadawcą maila jest: ' + email}">email</h4></td>
+    </tr>
+    <tr>
+        <td height="50" style="color: white;" align="center"><p>#2019 Pierogarnia Jeżowe</p></td>
+    </tr>
+</table>
+</body>
+</html>
