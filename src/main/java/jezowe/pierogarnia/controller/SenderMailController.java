@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 
 @RestController
-@CrossOrigin(origins = "https://www.pierogarniajezowe.pl")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class SenderMailController {
     @Autowired
     private SmtpMailSender smtpMailSender;
