@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan
-public class MainApplicationClass {
+public class MainApplicationClass extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(MainApplicationClass.class, args);
     }

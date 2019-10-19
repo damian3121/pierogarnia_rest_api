@@ -13,9 +13,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+import java.util.Date;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/token")
 public class AuthenticationController {
     private static final String TOKEN_PREFIX = "Bearer ";
 
@@ -28,7 +30,7 @@ public class AuthenticationController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody LoginUserDTO loginUserDTO) throws AuthenticationException {
 
         final Authentication authentication = authenticationManager.authenticate(
@@ -39,6 +41,13 @@ public class AuthenticationController {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = jwtTokenUtil.generateToken(authentication);
+
+        Date now = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        calendar.add(Calendar.HOUR_OF_DAY, 3);
+
+        userService.updateTokenByUsername(loginUserDTO.getUsername(), token, calendar.getTime());
         return ResponseEntity.ok(new AuthTokenDTO(token));
     }
 }

@@ -34,27 +34,15 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         user.getRoles().forEach(role -> {
-            //authorities.add(new SimpleGrantedAuthority(role.getName()));
             authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
         });
         return authorities;
-        //return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     public List<User> findAll() {
         List<User> list = new ArrayList<>();
         userDAO.findAll().iterator().forEachRemaining(list::add);
         return list;
-    }
-
-    @Override
-    public void delete(long id) {
-        userDAO.deleteById(id);
-    }
-
-    @Override
-    public User findOne(String username) {
-        return userDAO.findByUsername(username);
     }
 
     @Override
@@ -67,9 +55,16 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-        newUser.setAge(user.getAge());
-        newUser.setSalary(user.getSalary());
         newUser.setRoles(user.getRoles());
         return userDAO.save(newUser);
+    }
+
+    @Override
+    public void updateTokenByUsername(String username, String jwtToken, Date dateTime) {
+        User updateUser = userDAO.findByUsername(username);
+        updateUser.setJwtToken(jwtToken);
+        updateUser.setDateTime(dateTime);
+
+        userDAO.save(updateUser);
     }
 }

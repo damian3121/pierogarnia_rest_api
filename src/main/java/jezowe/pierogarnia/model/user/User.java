@@ -1,8 +1,7 @@
 package jezowe.pierogarnia.model.user;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -10,11 +9,17 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
     private long id;
+    @Column(name="username")
     private String username;
+    @Column(name="password")
     private String password;
-    private long salary;
-    private int age;
+    @Column(name="jwtToken")
+    private String jwtToken;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="dateTime")
+    private Date dateTime;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "USER_ROLES", joinColumns = {
@@ -46,20 +51,20 @@ public class User {
         this.password = password;
     }
 
-    public long getSalary() {
-        return salary;
+    public String getJwtToken() {
+        return jwtToken;
     }
 
-    public void setSalary(long salary) {
-        this.salary = salary;
+    public void setJwtToken(String jwtToken) {
+        this.jwtToken = jwtToken;
     }
 
-    public int getAge() {
-        return age;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Set<Role> getRoles() {
