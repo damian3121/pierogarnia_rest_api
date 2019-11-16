@@ -2,8 +2,6 @@ package jezowe.pierogarnia.dto.user;
 
 import jezowe.pierogarnia.model.user.Role;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 public class UserDTO {

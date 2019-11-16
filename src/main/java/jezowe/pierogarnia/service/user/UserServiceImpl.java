@@ -51,6 +51,22 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
+    public User findByUsername(String username) {
+        return userDAO.findByUsername(username);
+    }
+
+    @Override
+    public void changeUserPassword(User user, String password) {
+        user.setPassword(bcryptEncoder.encode(password));
+        userDAO.save(user);
+    }
+
+    @Override
+    public boolean checkIfValidOldPassword(User user, String oldPassword) {
+        return bcryptEncoder.matches(oldPassword, user.getPassword());
+    }
+
+    @Override
     public User save(UserDTO user) {
         User newUser = new User();
         newUser.setUsername(user.getUsername());

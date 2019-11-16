@@ -15,4 +15,10 @@ public interface UserService {
     List<User> findAll();
 
     User findById(Long id);
+
+    User findByUsername(String username);
+
+    void changeUserPassword(final User user, final String password);
+
+    boolean checkIfValidOldPassword(final User user, final String oldPassword);
 }
