@@ -11,7 +11,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Service(value = "userService")
@@ -40,9 +43,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     public List<User> findAll() {
-        List<User> list = new ArrayList<>();
-        userDAO.findAll().iterator().forEachRemaining(list::add);
-        return list;
+        return userDAO.findAll();
     }
 
     @Override
