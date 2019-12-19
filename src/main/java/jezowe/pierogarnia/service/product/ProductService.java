@@ -8,6 +8,8 @@ import java.util.List;
 public interface ProductService {
     Product save(ProductDTO productDTO);
 
+    Product update(ProductDTO productDTO);
+
     List<Product> findAll();
 
     Product findById(Long id);

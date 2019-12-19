@@ -18,17 +18,26 @@ public class ProductController {
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public List<Product> listProducts() {
+
         return productService.findAll();
     }
 
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
     public Product getOne(@PathVariable(value = "id") Long id) {
+
         return productService.findById(id);
     }
 
     @RequestMapping(value = "/add-product", method = RequestMethod.POST)
     public Product saveProduct(@RequestBody ProductDTO productDTO) {
+
         return productService.save(productDTO);
+    }
+
+    @RequestMapping(value = "/update-product", method = RequestMethod.POST)
+    public Product updateProduct(@RequestBody ProductDTO productDTO) {
+
+        return productService.update(productDTO);
     }
 }

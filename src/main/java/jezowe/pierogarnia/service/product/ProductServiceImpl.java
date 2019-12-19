@@ -19,8 +19,16 @@ public class ProductServiceImpl implements ProductService {
         Product newProduct = new Product();
         newProduct.setName(productDTO.getName());
         newProduct.setPrice(productDTO.getPrice());
-
         return productDAO.save(newProduct);
+    }
+
+    @Override
+    public Product update(ProductDTO productDTO) {
+        Product updatedProduct = productDAO.getOne(productDTO.getId());
+        updatedProduct.setName(productDTO.getName());
+        updatedProduct.setPrice(productDTO.getPrice());
+
+        return productDAO.save(updatedProduct);
     }
 
     @Override
