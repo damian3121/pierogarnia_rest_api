@@ -6,9 +6,11 @@ import jezowe.pierogarnia.model.product.Product;
 import java.util.List;
 
 public interface ProductService {
-    Product save(ProductDTO productDTO);
+    Product create(ProductDTO productDTO);
 
     Product update(ProductDTO productDTO);
+
+    void delete(Long id);
 
     List<Product> findAll();
 

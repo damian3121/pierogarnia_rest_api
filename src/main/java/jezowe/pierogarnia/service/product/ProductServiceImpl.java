@@ -15,7 +15,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductDAO productDAO;
 
     @Override
-    public Product save(ProductDTO productDTO) {
+    public Product create(ProductDTO productDTO) {
         Product newProduct = new Product();
         newProduct.setName(productDTO.getName());
         newProduct.setPrice(productDTO.getPrice());
@@ -44,5 +44,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findByName(String name) {
         return productDAO.findByName(name);
+    }
+
+    @Override
+    public void delete(Long id) {
+        productDAO.deleteById(id);
     }
 }
