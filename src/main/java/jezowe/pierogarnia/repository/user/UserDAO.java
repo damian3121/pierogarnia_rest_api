@@ -1,4 +1,4 @@
-package jezowe.pierogarnia.dao.user;
+package jezowe.pierogarnia.repository.user;
 
 import jezowe.pierogarnia.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,6 @@
 package jezowe.pierogarnia.service.user;
 
-import jezowe.pierogarnia.dao.user.UserDAO;
+import jezowe.pierogarnia.repository.user.UserDAO;
 import jezowe.pierogarnia.dto.user.UserDTO;
 import jezowe.pierogarnia.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;

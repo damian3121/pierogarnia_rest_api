@@ -2,6 +2,7 @@ package jezowe.pierogarnia.controller.product;
 
 import jezowe.pierogarnia.dto.product.ProductDTO;
 import jezowe.pierogarnia.model.product.Product;
+import jezowe.pierogarnia.repository.product.ProductRepository;
 import jezowe.pierogarnia.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ProductRepository productRepository;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Product> productsList() {
@@ -24,7 +27,8 @@ public class ProductController {
     @RequestMapping(
             value = "/{name}",
             method = RequestMethod.GET,
-            produces = "application/jezowe.pierogarnia.controller.user.getbyname+json")
+            produces = "application/jezowe.pierogarnia.controller.user.getbyname+json"
+    )
     public Product getByName(@PathVariable(value = "name") String name) {
 
         return productService.findByName(name);
@@ -33,7 +37,8 @@ public class ProductController {
     @RequestMapping(
             value = "/{id}",
             method = RequestMethod.GET,
-            produces = "application/jezowe.pierogarnia.controller.user.getbyid+json")
+            produces = "application/jezowe.pierogarnia.controller.user.getbyid+json"
+    )
     public Product getProductById(@PathVariable(value = "id") Long id) {
 
         return productService.findById(id);
@@ -45,10 +50,10 @@ public class ProductController {
         return productService.create(productDTO);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public Product update(@RequestBody ProductDTO productDTO) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Product update(@PathVariable(value = "id") Long id, @RequestBody ProductDTO productDTO) {
 
-        return productService.update(productDTO);
+        return productService.update(id, productDTO);
     }
 
     //    @PreAuthorize("hasRole('ADMIN')")
