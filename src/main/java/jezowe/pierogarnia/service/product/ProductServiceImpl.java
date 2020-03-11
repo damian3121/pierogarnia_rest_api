@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
         }
 
         Product updatedProduct = ProductMapper.INSTANCE.toProduct(productDTO);
-        updatedProduct.setId(id);
+//        updatedProduct.setId(id);
 
         return productRepository.save(updatedProduct);
     }

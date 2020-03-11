@@ -2,12 +2,16 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+      </profile>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="PierogarniaRestApi" />
         <module name="RestApp" />
+        <module name="rest" />
       </profile>
     </annotationProcessing>
   </component>
@@ -15,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="PierogarniaRestApi" options="-parameters" />
       <module name="RestApp" options="-parameters" />
+      <module name="rest" options="-parameters" />
     </option>
   </component>
 </project>
