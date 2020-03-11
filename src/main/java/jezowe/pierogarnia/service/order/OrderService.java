@@ -6,6 +6,8 @@ import jezowe.pierogarnia.dto.order.UpdateOrderDTO;
 import jezowe.pierogarnia.model.order.Order;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface OrderService {
     Order create(OrderDTO orderDTO);
@@ -17,4 +19,6 @@ public interface OrderService {
     void delete(Long id);
 
     Order update(Long id, UpdateOrderDTO updateOrderDTO);
+
+    List<Order> findAll();
 }

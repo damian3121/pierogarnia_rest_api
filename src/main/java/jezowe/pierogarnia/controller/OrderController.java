@@ -8,12 +8,20 @@ import jezowe.pierogarnia.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(value = "/orders")
 @RestController
 public class OrderController {
     @Autowired
     private OrderService orderService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Order> ordersList() {
+
+        return orderService.findAll();
+    }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Order create(@RequestBody OrderDTO orderDTO) {

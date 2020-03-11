@@ -15,6 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service(value = "orderService")
@@ -69,6 +71,11 @@ public class OrderServiceImpl implements OrderService {
 
         order.deleteOrderItem(deletingOrderItem);
         orderRepository.save(order);
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return orderRepository.findAll();
     }
 
     private boolean checkIfOrderExistById(Long id) {
