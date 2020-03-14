@@ -1,6 +1,5 @@
 package jezowe.pierogarnia.model.product;
 
-import jezowe.pierogarnia.model.order.Order;
 import lombok.Data;
 
 import javax.persistence.*;

@@ -8,6 +8,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,7 +28,7 @@ public class Order {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderItem> orderItems = new HashSet<>(0);
 
-    public void updateOrder(UpdateOrderDTO updateOrderDTO) {
+    public void update(UpdateOrderDTO updateOrderDTO) {
         this.setReceiptDate(updateOrderDTO.getReceiptDate());
         this.setCustomerName(updateOrderDTO.getCustomerName());
         this.setCustomerSurname(updateOrderDTO.getCustomerSurname());
@@ -36,6 +37,15 @@ public class Order {
 
     public void addOrderItem(OrderItem orderItem) {
         this.orderItems.add(orderItem);
+    }
+
+    public void addOrderItems(List<OrderItem> orderItems) {
+        removeAllOrderItems();
+        orderItems.forEach(it -> addOrderItem(it));
+    }
+
+    private void removeAllOrderItems() {
+        this.getOrderItems().clear();
     }
 
     public void deleteOrderItem(OrderItem orderItem) {

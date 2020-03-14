@@ -8,18 +8,15 @@ import jezowe.pierogarnia.model.product.Product;
 import jezowe.pierogarnia.repository.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service(value = "productService")
+@Service
 public class ProductServiceImpl implements ProductService {
-
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public Product create(ProductDTO productDTO) {
@@ -38,7 +35,6 @@ public class ProductServiceImpl implements ProductService {
         }
 
         Product updatedProduct = ProductMapper.INSTANCE.toProduct(productDTO);
-//        updatedProduct.setId(id);
 
         return productRepository.save(updatedProduct);
     }
@@ -50,14 +46,6 @@ public class ProductServiceImpl implements ProductService {
         }
 
         productRepository.deleteById(id);
-    }
-
-    private boolean checkIfProductExistByName(String name) {
-        return productRepository.existsByName(name);
-    }
-
-    private boolean checkIfProductExistById(Long id) {
-        return productRepository.existsById(id);
     }
 
     @Override
@@ -73,5 +61,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findByName(String name) {
         return productRepository.findByName(name);
+    }
+
+    private boolean checkIfProductExistByName(String name) {
+        return productRepository.existsByName(name);
+    }
+
+    private boolean checkIfProductExistById(Long id) {
+        return productRepository.existsById(id);
     }
 }

@@ -1,24 +1,22 @@
 package jezowe.pierogarnia.service.order;
 
 import jezowe.pierogarnia.dto.order.OrderDTO;
-import jezowe.pierogarnia.dto.order.OrderItemDTO;
 import jezowe.pierogarnia.dto.order.UpdateOrderDTO;
 import jezowe.pierogarnia.model.order.Order;
-import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-@Service
 public interface OrderService {
     Order create(OrderDTO orderDTO);
 
-    Order addOrderItem(Long id, OrderItemDTO orderItemDTO);
+    Order getByReceiptDate(LocalDateTime receiptOrderDate, String customerSurname);
 
-    void deleteOrderItem(Long orderId, Long orderItemId);
-
-    void delete(Long id);
+    Order getById(Long id);
 
     Order update(Long id, UpdateOrderDTO updateOrderDTO);
+
+    void delete(Long id);
 
     List<Order> findAll();
 }

@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-import java.util.Set;
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface OrderItemMapper {
@@ -18,5 +18,5 @@ public interface OrderItemMapper {
     @Mapping(target = "productId", source = "productId")
     OrderItem toOrderItem(OrderItemDTO orderItems);
 
-    Set<OrderItem> mapToOrderItemSet(Set<OrderItemDTO> orderItemDTOS);
+    List<OrderItem> mapToOrderItemList(List<OrderItemDTO> orderItemDTO);
 }

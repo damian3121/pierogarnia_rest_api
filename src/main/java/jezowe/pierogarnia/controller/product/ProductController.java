@@ -4,7 +4,6 @@ import jezowe.pierogarnia.dto.product.ProductDTO;
 import jezowe.pierogarnia.model.product.Product;
 import jezowe.pierogarnia.repository.product.ProductRepository;
 import jezowe.pierogarnia.service.product.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,51 +12,46 @@ import java.util.List;
 @RequestMapping(value = "/products")
 @RestController
 public class ProductController {
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductService productService;
+    private final ProductRepository productRepository;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Product> productsList() {
-
-        return productService.findAll();
+    public ProductController(ProductService productService, ProductRepository productRepository) {
+        this.productService = productService;
+        this.productRepository = productRepository;
     }
 
-    @RequestMapping(
-            value = "/{name}",
-            method = RequestMethod.GET,
-            produces = "application/jezowe.pierogarnia.controller.user.getbyname+json"
-    )
-    public Product getByName(@PathVariable(value = "name") String name) {
-
-        return productService.findByName(name);
-    }
-
-    @RequestMapping(
-            value = "/{id}",
-            method = RequestMethod.GET,
-            produces = "application/jezowe.pierogarnia.controller.user.getbyid+json"
-    )
-    public Product getProductById(@PathVariable(value = "id") Long id) {
-
-        return productService.findById(id);
-    }
-
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping
     public Product create(@RequestBody ProductDTO productDTO) {
 
         return productService.create(productDTO);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @GetMapping
+    public List<Product> products() {
+
+        return productService.findAll();
+    }
+
+    @GetMapping(value = "/name/{name}")
+    public Product getByName(@PathVariable(value = "name") String name) {
+
+        return productService.findByName(name);
+    }
+
+    @GetMapping(value = "/{id}")
+    public Product getById(@PathVariable(value = "id") Long id) {
+
+        return productService.findById(id);
+    }
+
+    @PutMapping(value = "/{id}")
     public Product update(@PathVariable(value = "id") Long id, @RequestBody ProductDTO productDTO) {
 
         return productService.update(id, productDTO);
     }
 
     //    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable(value = "id") Long id) {
         productService.delete(id);
     }
