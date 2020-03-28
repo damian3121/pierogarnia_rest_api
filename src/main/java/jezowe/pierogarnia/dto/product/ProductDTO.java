@@ -9,4 +9,7 @@ public class ProductDTO {
     private Long id;
     private String name;
     private BigDecimal price;
+    private BigDecimal fktPriceNet;
+    private BigDecimal fktPriceGross;
+    private Long fktProductId;
 }
