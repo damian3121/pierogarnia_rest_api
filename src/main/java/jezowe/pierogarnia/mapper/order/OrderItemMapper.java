@@ -12,11 +12,9 @@ import java.util.List;
 public interface OrderItemMapper {
     OrderItemMapper INSTANCE = Mappers.getMapper(OrderItemMapper.class);
 
-    @Mapping(target = "productName", source = "productName")
-    @Mapping(target = "summaryPrice", source = "summaryPrice")
     @Mapping(target = "quantity", source = "quantity")
     @Mapping(target = "productId", source = "productId")
     OrderItem toOrderItem(OrderItemDTO orderItems);
 
-    List<OrderItem> mapToOrderItemList(List<OrderItemDTO> orderItemDTO);
+    List<OrderItem> toOrderItemList(List<OrderItemDTO> orderItemDTO);
 }

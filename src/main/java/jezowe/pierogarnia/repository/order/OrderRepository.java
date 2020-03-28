@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface OrderRepository extends JpaRepository<Order, Long> {
     Optional<Order> findById(Long id);
 
-    Optional<Order> findByReceiptDateAndCustomerSurname(LocalDateTime orderDate, String customerSurname);
+    Optional<Order> findByReceiptDateAndCustomerName(LocalDateTime orderDate, String customerSurname);
 
     boolean existsById(Long id);
 }

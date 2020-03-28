@@ -25,7 +25,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     public Order create(Long id, List<OrderItemDTO> orderItemsDTO) {
         Order order = orderRepository.findById(id).orElseThrow(() ->
                 new CanNotFindResourceProblem("Resource not exist (order id): " + id));
-        List<OrderItem> addedOrderItems = OrderItemMapper.INSTANCE.mapToOrderItemList(orderItemsDTO);
+        List<OrderItem> addedOrderItems = OrderItemMapper.INSTANCE.toOrderItemList(orderItemsDTO);
 
         order.addOrderItems(addedOrderItems);
         return orderRepository.save(order);
@@ -35,7 +35,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     public Order updateOrder(Long orderId, List<OrderItemDTO> orderItemDTO) {
         Order order = orderRepository.findById(orderId).orElseThrow(() ->
                 new CanNotFindResourceProblem("Resource not exist (order id): " + orderId));
-        List<OrderItem> addedOrderItem = OrderItemMapper.INSTANCE.mapToOrderItemList(orderItemDTO);
+        List<OrderItem> addedOrderItem = OrderItemMapper.INSTANCE.toOrderItemList(orderItemDTO);
 
         order.addOrderItems(addedOrderItem);
         return orderRepository.save(order);

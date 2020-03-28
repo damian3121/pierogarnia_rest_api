@@ -29,11 +29,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getByReceiptDate(LocalDateTime receiptOrderDate, String customerSurname) {
-        Order order = orderRepository.findByReceiptDateAndCustomerSurname(
-                receiptOrderDate, customerSurname)
+    public Order getByReceiptDate(LocalDateTime receiptOrderDate, String customerName) {
+        Order order = orderRepository.findByReceiptDateAndCustomerName(
+                receiptOrderDate, customerName)
                 .orElseThrow(() -> new CanNotFindResourceProblem("Resource not exist (order by date and customer name): "
-                        + receiptOrderDate + ": " + customerSurname));
+                        + receiptOrderDate + ": " + customerName));
 
         return order;
     }
@@ -47,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order update(Long id, UpdateOrderDTO updateOrderDTO) {
         Order updatedOrder = orderRepository.findById(id).orElseThrow(() ->
-                new CanNotFindResourceProblem("Resource not exist: " + updateOrderDTO.getCustomerCompany()));
+                new CanNotFindResourceProblem("Resource not exist: " + updateOrderDTO.getCustomerName()));
 
         updatedOrder.update(updateOrderDTO);
 

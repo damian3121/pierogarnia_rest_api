@@ -38,9 +38,9 @@ public class OrderController {
     @GetMapping(produces = "application/jezowe.pierogarnia.controller.order.getbydate+json")
     public Order getByDate(
             @RequestParam(name = "receiptOrderDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime receiptOrderDate,
-            @RequestParam(name = "customerSurname") String customerSurname
+            @RequestParam(name = "customerName") String customerName
     ) {
-        return orderService.getByReceiptDate(receiptOrderDate, customerSurname);
+        return orderService.getByReceiptDate(receiptOrderDate, customerName);
     }
 
     @GetMapping(value = "/{id}")

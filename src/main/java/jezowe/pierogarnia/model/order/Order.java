@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -22,17 +23,16 @@ public class Order {
     private LocalDateTime orderDate;
     private LocalDateTime receiptDate;
     private String customerName;
-    private String customerSurname;
     @Nullable
-    private String customerCompany;
+    private Long customerId;
+    @Nullable
+    private BigDecimal summaryPrice;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderItem> orderItems = new HashSet<>(0);
 
     public void update(UpdateOrderDTO updateOrderDTO) {
         this.setReceiptDate(updateOrderDTO.getReceiptDate());
         this.setCustomerName(updateOrderDTO.getCustomerName());
-        this.setCustomerSurname(updateOrderDTO.getCustomerSurname());
-        this.setCustomerCompany(updateOrderDTO.getCustomerCompany());
     }
 
     public void addOrderItem(OrderItem orderItem) {

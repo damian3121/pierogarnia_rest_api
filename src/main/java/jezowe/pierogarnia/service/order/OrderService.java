@@ -10,7 +10,7 @@ import java.util.List;
 public interface OrderService {
     Order create(OrderDTO orderDTO);
 
-    Order getByReceiptDate(LocalDateTime receiptOrderDate, String customerSurname);
+    Order getByReceiptDate(LocalDateTime receiptOrderDate, String customerName);
 
     Order getById(Long id);
 

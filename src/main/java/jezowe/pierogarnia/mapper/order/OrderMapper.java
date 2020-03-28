@@ -14,8 +14,8 @@ public interface OrderMapper {
     @Mapping(target = "orderDate", source = "orderDate")
     @Mapping(target = "receiptDate", source = "receiptDate")
     @Mapping(target = "customerName", source = "customerName")
-    @Mapping(target = "customerSurname", source = "customerSurname")
-    @Mapping(target = "customerCompany", source = "customerCompany")
+    @Mapping(target = "customerId", source = "customerId")
+    @Mapping(target = "summaryPrice", source = "summaryPrice")
     @Mapping(target = "orderItems", source = "orderItemDTO")
     Order toOrder(OrderDTO orderDTO);
 }

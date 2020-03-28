@@ -8,6 +8,5 @@ import java.time.LocalDateTime;
 public class UpdateOrderDTO {
     private LocalDateTime receiptDate;
     private String customerName;
-    private String customerSurname;
-    private String customerCompany;
+    private Long customerId;
 }

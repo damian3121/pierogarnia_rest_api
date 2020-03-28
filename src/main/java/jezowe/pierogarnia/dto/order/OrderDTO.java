@@ -2,6 +2,7 @@ package jezowe.pierogarnia.dto.order;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ public class OrderDTO {
     private LocalDateTime orderDate;
     private LocalDateTime receiptDate;
     private String customerName;
-    private String customerSurname;
-    private String customerCompany;
+    private Long customerId;
+    private BigDecimal summaryPrice;
     private Set<OrderItemDTO> orderItemDTO;
 }
