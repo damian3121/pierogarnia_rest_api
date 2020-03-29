@@ -17,5 +17,6 @@ public interface OrderMapper {
     @Mapping(target = "customerId", source = "customerId")
     @Mapping(target = "summaryPrice", source = "summaryPrice")
     @Mapping(target = "orderItems", source = "orderItemDTO")
+    @Mapping(target = "payerVat", source = "payerVat")
     Order toOrder(OrderDTO orderDTO);
 }

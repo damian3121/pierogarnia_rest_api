@@ -27,12 +27,15 @@ public class Order {
     private Long customerId;
     @Nullable
     private BigDecimal summaryPrice;
+    private Boolean payerVat;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderItem> orderItems = new HashSet<>(0);
 
     public void update(UpdateOrderDTO updateOrderDTO) {
         this.setReceiptDate(updateOrderDTO.getReceiptDate());
+        this.setCustomerId(updateOrderDTO.getCustomerId());
         this.setCustomerName(updateOrderDTO.getCustomerName());
+        this.setPayerVat(updateOrderDTO.getPayerVat());
     }
 
     public void addOrderItem(OrderItem orderItem) {
@@ -40,8 +43,11 @@ public class Order {
     }
 
     public void addOrderItems(List<OrderItem> orderItems) {
+        BigDecimal sumSummaryPrice = orderItems.stream().map(it -> it.getSummaryPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);
+
         removeAllOrderItems();
         orderItems.forEach(it -> addOrderItem(it));
+        this.setSummaryPrice(sumSummaryPrice);
     }
 
     private void removeAllOrderItems() {

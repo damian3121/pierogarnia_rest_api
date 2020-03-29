@@ -14,6 +14,7 @@ public interface OrderItemMapper {
 
     @Mapping(target = "quantity", source = "quantity")
     @Mapping(target = "productId", source = "productId")
+    @Mapping(target = "summaryPrice", source = "summaryPrice")
     OrderItem toOrderItem(OrderItemDTO orderItems);
 
     List<OrderItem> toOrderItemList(List<OrderItemDTO> orderItemDTO);

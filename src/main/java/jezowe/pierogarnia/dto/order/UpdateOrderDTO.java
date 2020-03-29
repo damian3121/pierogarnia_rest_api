@@ -9,4 +9,5 @@ public class UpdateOrderDTO {
     private LocalDateTime receiptDate;
     private String customerName;
     private Long customerId;
+    private Boolean payerVat;
 }

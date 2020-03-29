@@ -14,5 +14,6 @@ public class OrderDTO {
     private String customerName;
     private Long customerId;
     private BigDecimal summaryPrice;
+    private Boolean payerVat;
     private Set<OrderItemDTO> orderItemDTO;
 }
