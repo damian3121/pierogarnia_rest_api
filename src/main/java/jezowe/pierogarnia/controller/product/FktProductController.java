@@ -1,7 +1,7 @@
 package jezowe.pierogarnia.controller.product;
 
 import invoices.integration.dto.product.FktProductDTO;
-import invoices.integration.service.product.FktProductServiceImpl;
+import invoices.integration.service.product.FktProductService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +13,9 @@ import java.util.List;
 @RequestMapping(value = "/fkt-products")
 @RestController
 public class FktProductController {
-    private final FktProductServiceImpl fktProductService;
+    private final FktProductService fktProductService;
 
-    public FktProductController(FktProductServiceImpl fktProductService) {
+    public FktProductController(FktProductService fktProductService) {
         this.fktProductService = fktProductService;
     }
 

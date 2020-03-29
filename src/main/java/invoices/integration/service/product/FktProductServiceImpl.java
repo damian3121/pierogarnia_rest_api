@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class FktProductServiceImpl {
+public class FktProductServiceImpl implements FktProductService {
     private final RestTemplateProvider restTemplateProvider;
 
     public FktProductServiceImpl(RestTemplateProvider restTemplateProvider) {
