@@ -28,6 +28,7 @@ public class Order {
     @Nullable
     private BigDecimal summaryPrice;
     private Boolean payerVat;
+    private Boolean issuedInvoice;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderItem> orderItems = new HashSet<>(0);
 
