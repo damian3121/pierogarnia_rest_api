@@ -18,6 +18,7 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
     private final OrderItemService orderItemService;
+
     public OrderController(OrderService orderService, jezowe.pierogarnia.service.order.OrderItemService orderItemService) {
         this.orderService = orderService;
         this.orderItemService = orderItemService;
@@ -30,7 +31,7 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<Order> orders() {
+    public List<OrderDTO> orders() {
 
         return orderService.findAll();
     }
@@ -47,6 +48,11 @@ public class OrderController {
     public Order getById(@PathVariable(value = "id") Long id) {
 
         return orderService.getById(id);
+    }
+
+    @GetMapping(value = "/all-with-not-payer-vat")
+    public List<Order> getOrdersWithNotPayerVat() {
+        return orderService.getOrdersWithNotPayerVat();
     }
 
     @PutMapping(value = "/{id}", produces = "application/jezowe.pierogarnia.controller.order.orderUpdate+json")

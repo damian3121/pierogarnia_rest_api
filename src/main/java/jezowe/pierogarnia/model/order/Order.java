@@ -1,6 +1,7 @@
 package jezowe.pierogarnia.model.order;
 
 import jezowe.pierogarnia.dto.order.UpdateOrderDTO;
+import jezowe.pierogarnia.model.InvoiceDetails;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
@@ -29,6 +30,9 @@ public class Order {
     private BigDecimal summaryPrice;
     private Boolean payerVat;
     private Boolean issuedInvoice;
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
+    private InvoiceDetails invoiceDetails;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderItem> orderItems = new HashSet<>(0);
 

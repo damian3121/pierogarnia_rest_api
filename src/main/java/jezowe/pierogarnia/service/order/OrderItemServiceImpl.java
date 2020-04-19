@@ -5,10 +5,12 @@ import jezowe.pierogarnia.exception.CanNotFindResourceProblem;
 import jezowe.pierogarnia.mapper.order.OrderItemMapper;
 import jezowe.pierogarnia.model.order.Order;
 import jezowe.pierogarnia.model.order.OrderItem;
+import jezowe.pierogarnia.model.order.Order_;
 import jezowe.pierogarnia.repository.order.OrderItemRepository;
 import jezowe.pierogarnia.repository.order.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +21,6 @@ import java.util.List;
 public class OrderItemServiceImpl implements OrderItemService {
     private final OrderItemRepository orderItemRepository;
     private final OrderRepository orderRepository;
-
 
     @Override
     public Order create(Long id, List<OrderItemDTO> orderItemsDTO) {

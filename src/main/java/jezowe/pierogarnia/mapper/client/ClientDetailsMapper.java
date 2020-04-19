@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface ClientDetailsMapper {
     ClientDetailsMapper INSTANCE = Mappers.getMapper(ClientDetailsMapper.class);
-    
+
     @Mapping(target = "fktCustomerId", source = "fktCustomerId")
     @Mapping(target = "extraInfoClientName", source = "extraInfoClientName")
     @Mapping(target = "extraInfo", source = "extraInfo")

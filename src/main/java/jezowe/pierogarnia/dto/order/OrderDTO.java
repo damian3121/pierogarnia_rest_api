@@ -15,5 +15,6 @@ public class OrderDTO {
     private Long customerId;
     private BigDecimal summaryPrice;
     private Boolean payerVat;
-    private Set<OrderItemDTO> orderItemDTO;
+    private Boolean issuedInvoice;
+    private Set<OrderItemDTO> orderItems;
 }

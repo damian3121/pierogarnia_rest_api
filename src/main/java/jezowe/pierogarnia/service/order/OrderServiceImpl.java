@@ -5,9 +5,11 @@ import jezowe.pierogarnia.dto.order.UpdateOrderDTO;
 import jezowe.pierogarnia.exception.CanNotFindResourceProblem;
 import jezowe.pierogarnia.mapper.order.OrderMapper;
 import jezowe.pierogarnia.model.order.Order;
+import jezowe.pierogarnia.model.order.Order_;
 import jezowe.pierogarnia.repository.order.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,6 +21,13 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
+
+    @Override
+    public List<Order> getOrdersWithNotPayerVat() {
+        List<Order> orders = orderRepository.findAll(notPayerVat());
+
+        return orders;
+    }
 
     @Override
     public Order create(OrderDTO orderDTO) {
@@ -64,12 +73,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findAll() {
-        return orderRepository.findAll();
+    public List<OrderDTO> findAll() {
+        List<Order> orders = orderRepository.findAll();
+        List<OrderDTO> orderDTOs = OrderMapper.INSTANCE.toOrderDTOList(orders);
+
+        return orderDTOs;
     }
 
     private boolean checkIfOrderExistById(Long id) {
         return orderRepository.existsById(id);
     }
 
+    private static Specification<Order> notPayerVat() {
+        return (root, query, cb) -> cb.notEqual(root.get(Order_.PAYER_VAT), false);
+    }
 }

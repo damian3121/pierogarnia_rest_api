@@ -18,5 +18,7 @@ public interface OrderService {
 
     void delete(Long id);
 
-    List<Order> findAll();
+    List<OrderDTO> findAll();
+
+    List<Order> getOrdersWithNotPayerVat();
 }

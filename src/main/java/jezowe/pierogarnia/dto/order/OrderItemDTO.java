@@ -9,4 +9,5 @@ public class OrderItemDTO {
     private BigDecimal quantity;
     private Long productId;
     private Long summaryPrice;
+    private String productName;
 }
